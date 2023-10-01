@@ -1,4 +1,6 @@
-﻿namespace Json;
+﻿using Json.Basics;
+
+namespace Json;
 
 public class Value : IPattern
 {
@@ -6,33 +8,26 @@ public class Value : IPattern
 
     public Value()
     {
-        var stringPattern = new StringPattern();
-        var number = new Number();
+        var obj = GetObjectPattern();
 
-        var value = new Choice(
-            stringPattern,
-            number,
-            new TextPattern("true"),
-            new TextPattern("false"),
-            new TextPattern("null"));
-
-        var obj = GetObjectPattern(value);
-
-        var array = GetArrayPattern(value);
+        var array = GetArrayPattern();
 
         pattern = new Choice(obj, array);
     }
 
-    private static Choice GetArrayPattern(Choice value)
+    private static Choice GetArrayPattern()
     {
+        var value = GetValuePattern();
+        
         return new Choice(
             new Character('['),
             new Many(value),
             new Character(']'));
     }
 
-    private static Sequence GetObjectPattern(Choice value)
+    private static Sequence GetObjectPattern()
     {
+        var value = GetValuePattern();
         return new Sequence(
             new Character('{'),
             new Many(
@@ -43,6 +38,31 @@ public class Value : IPattern
             new Character('}'));
     }
 
+    private static Choice GetValuePattern()
+    {
+        var stringPattern = GetStringPattern();
+        var number = GetNumberPattern();
+        
+        var value = new Choice(
+            stringPattern,
+            number,
+            new TextPattern("true"),
+            new TextPattern("false"),
+            new TextPattern("null"));
+
+        return value;
+    }
+
+    private static IPattern GetNumberPattern()
+    {
+        return new Number();
+    }
+
+    private static IPattern GetStringPattern()
+    {
+        return new StringPattern();
+    }
+    
     public IMatch Match(string text)
     {
         if (string.IsNullOrEmpty(text))

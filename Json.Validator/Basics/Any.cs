@@ -1,4 +1,4 @@
-﻿namespace Json;
+﻿namespace Json.Basics;
 
 public class Any : IPattern
 {

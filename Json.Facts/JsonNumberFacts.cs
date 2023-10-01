@@ -1,6 +1,6 @@
 ﻿
 using Xunit;
-using static Json.JsonNumber;
+using static Json.Basics.JsonNumber;
 
 namespace Json.Facts;
 

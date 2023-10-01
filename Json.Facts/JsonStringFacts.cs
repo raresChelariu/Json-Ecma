@@ -1,5 +1,5 @@
 using Xunit;
-using static Json.JsonString;
+using static Json.Basics.JsonString;
 
 namespace Json.Facts;
 

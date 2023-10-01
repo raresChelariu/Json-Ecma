@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Json;
+namespace Json.Basics;
 
 public class Choice : IPattern
 {
