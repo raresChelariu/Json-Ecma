@@ -18,12 +18,6 @@ public class Member : IPattern
 
     public IMatch Match(string text)
     {
-        var match = _pattern.Match(text);
-        if (match.Success() && string.IsNullOrEmpty(match.RemainingText()))
-        {
-            return new Match(true, "");
-        }
-
-        return new Match(false, text);
+        return _pattern.Match(text);
     }
 }

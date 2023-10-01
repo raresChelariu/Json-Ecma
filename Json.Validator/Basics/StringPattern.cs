@@ -2,7 +2,7 @@
 
 public class StringPattern : IPattern
 {
-    private readonly IPattern pattern;
+    private readonly IPattern _pattern;
 
     public StringPattern()
     {
@@ -42,7 +42,7 @@ public class StringPattern : IPattern
                 character,
                 hex));
 
-        pattern = new Sequence(
+        _pattern = new Sequence(
             new Character('"'),
             stringContent,
             new Character('"'));
@@ -66,12 +66,6 @@ public class StringPattern : IPattern
 
     public IMatch Match(string text)
     {
-        var match = pattern.Match(text);
-        if (match.Success() && string.IsNullOrEmpty(match.RemainingText()))
-        {
-            return new Match(true, "");
-        }
-
-        return new Match(false, text);
+        return _pattern.Match(text);
     }
 }

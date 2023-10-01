@@ -21,11 +21,6 @@ public class Object : IPattern
 
     public IMatch Match(string text)
     {
-        if (string.IsNullOrEmpty(text))
-        {
-            return new Match(false, text);
-        }
-
         return _pattern.Match(text);
     }
 }
