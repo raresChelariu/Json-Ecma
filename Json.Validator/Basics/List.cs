@@ -2,11 +2,11 @@
 
 public class List : IPattern
 {
-    private readonly IPattern pattern;
+    private readonly IPattern _pattern;
 
     public List(IPattern element, IPattern separator)
     {
-        this.pattern = new OptionalPattern(
+        _pattern = new OptionalPattern(
             new Sequence(
                 element,
                 new Many(
@@ -17,6 +17,6 @@ public class List : IPattern
 
     public IMatch Match(string text)
     {
-        return pattern.Match(text);
+        return _pattern.Match(text);
     }
 }

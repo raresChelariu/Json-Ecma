@@ -2,7 +2,7 @@
 
 public class Any : IPattern
 {
-    readonly string accepted;
+    private readonly string accepted;
 
     public Any(string accepted)
     {

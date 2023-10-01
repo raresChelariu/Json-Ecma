@@ -4,39 +4,7 @@ namespace Json;
 
 public class Value : IPattern
 {
-    private readonly IPattern pattern;
-
-    public Value()
-    {
-        var obj = GetObjectPattern();
-
-        var array = GetArrayPattern();
-
-        pattern = new Choice(obj, array);
-    }
-
-    private static Choice GetArrayPattern()
-    {
-        var value = GetValuePattern();
-        
-        return new Choice(
-            new Character('['),
-            new Many(value),
-            new Character(']'));
-    }
-
-    private static Sequence GetObjectPattern()
-    {
-        var value = GetValuePattern();
-        return new Sequence(
-            new Character('{'),
-            new Many(
-                new Sequence(
-                    new StringPattern(),
-                    new Character(':'),
-                    value)),
-            new Character('}'));
-    }
+    private readonly IPattern _pattern = GetValuePattern();
 
     private static Choice GetValuePattern()
     {
@@ -70,6 +38,6 @@ public class Value : IPattern
             return new Match(false, text);
         }
 
-        return pattern.Match(text);
+        return _pattern.Match(text);
     }
 }

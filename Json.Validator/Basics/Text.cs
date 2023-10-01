@@ -2,7 +2,7 @@
 
 public class TextPattern : IPattern
 {
-    readonly string prefix;
+    private readonly string prefix;
 
     public TextPattern(string prefix)
     {

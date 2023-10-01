@@ -2,8 +2,8 @@
 
 public class Range : IPattern
 {
-    readonly char start;
-    readonly char end;
+    private readonly char start;
+    private readonly char end;
 
     public Range(char start, char end)
     {

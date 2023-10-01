@@ -1,1 +1,1 @@
-﻿{"isNice":"true"}
+﻿   true  , null, false

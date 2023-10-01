@@ -2,8 +2,8 @@
 
 public class Match : IMatch
 {
-    readonly bool success;
-    readonly string remainingText;
+    private readonly bool success;
+    private readonly string remainingText;
 
     public Match(bool success, string remainingText)
     {

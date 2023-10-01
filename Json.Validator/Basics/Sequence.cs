@@ -2,7 +2,7 @@
 
 public class Sequence : IPattern
 {
-    readonly IPattern[] patterns;
+    private readonly IPattern[] patterns;
 
     public Sequence(params IPattern[] patterns)
     {

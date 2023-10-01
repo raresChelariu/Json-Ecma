@@ -2,7 +2,7 @@
 
 public class Many : IPattern
 {
-    readonly IPattern pattern;
+    private readonly IPattern pattern;
 
     public Many(IPattern pattern)
     {

@@ -4,11 +4,11 @@ namespace Json.Basics;
 
 public class Choice : IPattern
 {
-    private IPattern[] patterns;
+    private IPattern[] _patterns;
 
     public Choice(params IPattern[] initialPatterns)
     {
-        patterns = initialPatterns;
+        _patterns = initialPatterns;
     }
 
     public void Add(params IPattern[] newPatterns)
@@ -18,18 +18,18 @@ public class Choice : IPattern
             return;
         }
 
-        var totalPatterns = patterns.Length + newPatterns.Length;
-        Array.Resize(ref patterns, totalPatterns);
+        var totalPatterns = _patterns.Length + newPatterns.Length;
+        Array.Resize(ref _patterns, totalPatterns);
 
         for (var i = 0; i < newPatterns.Length; i++)
         {
-            patterns[patterns.Length - newPatterns.Length + i] = newPatterns[i];
+            _patterns[_patterns.Length - newPatterns.Length + i] = newPatterns[i];
         }
     }
 
     public IMatch Match(string text)
     {
-        foreach (var pattern in patterns)
+        foreach (var pattern in _patterns)
         {
             var match = pattern.Match(text);
 
