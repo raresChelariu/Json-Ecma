@@ -2,20 +2,20 @@
 
 public class TextPattern : IPattern
 {
-    private readonly string prefix;
+    private readonly string _prefix;
 
     public TextPattern(string prefix)
     {
-        this.prefix = prefix;
+        _prefix = prefix;
     }
 
     public IMatch Match(string text)
     {
-        if (string.IsNullOrEmpty(text) || !text.StartsWith(prefix))
+        if (string.IsNullOrEmpty(text) || !text.StartsWith(_prefix))
         {
             return new Match(false, text);
         }
 
-        return new Match(true, text[prefix.Length..]);
+        return new Match(true, text[_prefix.Length..]);
     }
 }
