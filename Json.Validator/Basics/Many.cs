@@ -2,19 +2,19 @@
 
 public class Many : IPattern
 {
-    private readonly IPattern pattern;
+    private readonly IPattern _pattern;
 
     public Many(IPattern pattern)
     {
-        this.pattern = pattern;
+        _pattern = pattern;
     }
 
     public IMatch Match(string text)
     {
-        var match = pattern.Match(text);
+        var match = _pattern.Match(text);
         while (match.Success())
         {
-            match = pattern.Match(match.RemainingText());
+            match = _pattern.Match(match.RemainingText());
         }
 
         return new Match(true, match.RemainingText());

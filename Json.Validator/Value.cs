@@ -15,8 +15,8 @@ public class Value : IPattern
             new TextPattern("true"),
             new TextPattern("false"),
             new TextPattern("null"),
-            stringPattern,
             number,
+            stringPattern,
             obj,
             arr
         );

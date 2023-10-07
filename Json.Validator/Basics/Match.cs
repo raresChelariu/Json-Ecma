@@ -2,22 +2,22 @@
 
 public class Match : IMatch
 {
-    private readonly bool success;
-    private readonly string remainingText;
+    private readonly bool _success;
+    private readonly string _remainingText;
 
     public Match(bool success, string remainingText)
     {
-        this.success = success;
-        this.remainingText = remainingText;
+        _success = success;
+        _remainingText = remainingText;
     }
 
     public bool Success()
     {
-        return success;
+        return _success;
     }
 
     public string RemainingText()
     {
-        return remainingText;
+        return _remainingText;
     }
 }
