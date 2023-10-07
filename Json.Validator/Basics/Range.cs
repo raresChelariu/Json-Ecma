@@ -2,13 +2,13 @@
 
 public class Range : IPattern
 {
-    private readonly char start;
-    private readonly char end;
+    private readonly char _start;
+    private readonly char _end;
 
     public Range(char start, char end)
     {
-        this.start = start;
-        this.end = end;
+        _start = start;
+        _end = end;
     }
 
     public IMatch Match(string text)
@@ -18,7 +18,7 @@ public class Range : IPattern
             return new Match(false, text);
         }
 
-        if (text[0] >= start && text[0] <= end)
+        if (text[0] >= _start && text[0] <= _end)
         {
             return new Match(true, text[1..]);
         }

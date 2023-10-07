@@ -2,16 +2,16 @@
 
 public class Any : IPattern
 {
-    private readonly string accepted;
+    private readonly string _accepted;
 
     public Any(string accepted)
     {
-        this.accepted = accepted;
+        _accepted = accepted;
     }
 
     public IMatch Match(string text)
     {
-        if (string.IsNullOrEmpty(text) || !accepted.Contains(text[0]))
+        if (string.IsNullOrEmpty(text) || !_accepted.Contains(text[0]))
         {
             return new Match(false, text);
         }
