@@ -1,7 +1,7 @@
 ﻿var path = Path.Combine(Directory.GetCurrentDirectory(), "input.json");
 var text = File.ReadAllText(path);
 
-var pattern = new Json.Object();
+var pattern = new Json.JsonFull();
 var match = pattern.Match(text);
 if (match.Success())
 {

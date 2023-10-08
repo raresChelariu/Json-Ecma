@@ -22,6 +22,11 @@ public class JsonFull : IPattern
             return new Match(false, text);
         }
 
-        return _pattern.Match(text);
+        var match = _pattern.Match(text);
+        if (!string.IsNullOrEmpty(match.RemainingText()))
+        {
+            return new Match(false, text);
+        }
+        return match;
     }
 }
