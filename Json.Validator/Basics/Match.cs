@@ -1,23 +1,24 @@
-﻿namespace Json.Basics;
-
-public class Match : IMatch
+﻿namespace Json.Basics
 {
-    private readonly bool _success;
-    private readonly string _remainingText;
-
-    public Match(bool success, string remainingText)
+    public class Match : IMatch
     {
-        _success = success;
-        _remainingText = remainingText;
-    }
+        private readonly bool _success;
+        private readonly string _remainingText;
 
-    public bool Success()
-    {
-        return _success;
-    }
+        public Match(bool success, string remainingText)
+        {
+            _success = success;
+            _remainingText = remainingText;
+        }
 
-    public string RemainingText()
-    {
-        return _remainingText;
+        public bool Success()
+        {
+            return _success;
+        }
+
+        public string RemainingText()
+        {
+            return _remainingText;
+        }
     }
 }

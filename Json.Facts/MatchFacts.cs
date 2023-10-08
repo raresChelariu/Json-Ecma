@@ -1,28 +1,29 @@
 ﻿using Json.Basics;
 using Xunit;
 
-namespace Json.Facts;
-
-public class MatchFacts
+namespace Json.Facts
 {
-    [Fact]
-    public void MatchSuccess()
+    public class MatchFacts
     {
-        var match = new Match(true, "remaining");
-        Assert.True(match.Success());
-    }
+        [Fact]
+        public void MatchSuccess()
+        {
+            var match = new Match(true, "remaining");
+            Assert.True(match.Success());
+        }
 
-    [Fact]
-    public void MatchFailure()
-    {
-        var match = new Match(false, "remaining");
-        Assert.False(match.Success());
-    }
+        [Fact]
+        public void MatchFailure()
+        {
+            var match = new Match(false, "remaining");
+            Assert.False(match.Success());
+        }
 
-    [Fact]
-    public void MatchRemainingText()
-    {
-        var match = new Match(true, "remaining");
-        Assert.Equal("remaining", match.RemainingText());
+        [Fact]
+        public void MatchRemainingText()
+        {
+            var match = new Match(true, "remaining");
+            Assert.Equal("remaining", match.RemainingText());
+        }
     }
 }

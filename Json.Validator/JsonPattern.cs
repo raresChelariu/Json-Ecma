@@ -1,23 +1,24 @@
 ﻿using Json.Basics;
 
-namespace Json;
-
-public class JsonPattern : IPattern
+namespace Json
 {
-    private readonly IPattern _pattern = new Value();
-
-    public IMatch Match(string text)
+    public class JsonPattern : IPattern
     {
-        if (string.IsNullOrEmpty(text))
-        {
-            return new Match(false, text);
-        }
+        private readonly IPattern _pattern = new Value();
 
-        var match = _pattern.Match(text);
-        if (!string.IsNullOrEmpty(match.RemainingText()))
+        public IMatch Match(string text)
         {
-            return new Match(false, text);
+            if (string.IsNullOrEmpty(text))
+            {
+                return new Match(false, text);
+            }
+
+            var match = _pattern.Match(text);
+            if (!string.IsNullOrEmpty(match.RemainingText()))
+            {
+                return new Match(false, text);
+            }
+            return match;
         }
-        return match;
     }
 }

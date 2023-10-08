@@ -1,21 +1,22 @@
-﻿namespace Json.Basics;
-
-public class TextPattern : IPattern
+﻿namespace Json.Basics
 {
-    private readonly string _prefix;
-
-    public TextPattern(string prefix)
+    public class TextPattern : IPattern
     {
-        _prefix = prefix;
-    }
+        private readonly string _prefix;
 
-    public IMatch Match(string text)
-    {
-        if (string.IsNullOrEmpty(text) || !text.StartsWith(_prefix))
+        public TextPattern(string prefix)
         {
-            return new Match(false, text);
+            _prefix = prefix;
         }
 
-        return new Match(true, text[_prefix.Length..]);
+        public IMatch Match(string text)
+        {
+            if (string.IsNullOrEmpty(text) || !text.StartsWith(_prefix))
+            {
+                return new Match(false, text);
+            }
+
+            return new Match(true, text[_prefix.Length..]);
+        }
     }
 }

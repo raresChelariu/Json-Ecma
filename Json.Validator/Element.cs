@@ -1,14 +1,15 @@
 ﻿using Json.Basics;
 
-namespace Json;
-
-public class Element : IPattern
+namespace Json
 {
-    private readonly IPattern _pattern = 
-        new Sequence(new Whitespace(), new Value(), new Whitespace());
-
-    public IMatch Match(string text)
+    public class Element : IPattern
     {
-        return _pattern.Match(text);
+        private readonly IPattern _pattern = 
+            new Sequence(new Whitespace(), new Value(), new Whitespace());
+
+        public IMatch Match(string text)
+        {
+            return _pattern.Match(text);
+        }
     }
 }

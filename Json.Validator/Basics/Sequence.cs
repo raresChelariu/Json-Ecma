@@ -1,28 +1,29 @@
-﻿namespace Json.Basics;
-
-public class Sequence : IPattern
+﻿namespace Json.Basics
 {
-    private readonly IPattern[] _patterns;
-
-    public Sequence(params IPattern[] patterns)
+    public class Sequence : IPattern
     {
-        _patterns = patterns;
-    }
+        private readonly IPattern[] _patterns;
 
-    public IMatch Match(string text)
-    {
-        var remainingText = text;
-        foreach (var pattern in _patterns)
+        public Sequence(params IPattern[] patterns)
         {
-            var matchResult = pattern.Match(remainingText);
-            if (!matchResult.Success())
-            {
-                return new Match(false, text);
-            }
-
-            remainingText = matchResult.RemainingText();
+            _patterns = patterns;
         }
 
-        return new Match(true, remainingText);
+        public IMatch Match(string text)
+        {
+            var remainingText = text;
+            foreach (var pattern in _patterns)
+            {
+                var matchResult = pattern.Match(remainingText);
+                if (!matchResult.Success())
+                {
+                    return new Match(false, text);
+                }
+
+                remainingText = matchResult.RemainingText();
+            }
+
+            return new Match(true, remainingText);
+        }
     }
 }

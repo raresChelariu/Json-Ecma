@@ -1,8 +1,9 @@
-﻿namespace Json.Basics;
-
-public interface IMatch
+﻿namespace Json.Basics
 {
-    bool Success();
+    public interface IMatch
+    {
+        bool Success();
 
-    string RemainingText();
+        string RemainingText();
+    }
 }

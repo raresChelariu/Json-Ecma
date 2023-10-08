@@ -1,6 +1,7 @@
-﻿namespace Json.Basics;
-
-public interface IPattern
+﻿namespace Json.Basics
 {
-    IMatch Match(string text);
+    public interface IPattern
+    {
+        IMatch Match(string text);
+    }
 }

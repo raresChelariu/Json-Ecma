@@ -1,47 +1,48 @@
 ﻿using Json.Basics;
 
-namespace Json;
-
-public class Value : IPattern
+namespace Json
 {
-    private static IPattern GetValuePattern()
+    public class Value : IPattern
     {
-        var stringPattern = GetStringPattern();
-        var number = GetNumberPattern();
-        var obj = new Object();
-        var arr = new Arr();
-
-        var value = new Choice(
-            new TextPattern("true"),
-            new TextPattern("false"),
-            new TextPattern("null"),
-            number,
-            stringPattern,
-            obj,
-            arr
-        );
-        var ws = new Whitespace();
-        return new Sequence(ws,value, ws);
-    }
-
-    private static IPattern GetNumberPattern()
-    {
-        return new Number();
-    }
-
-    private static IPattern GetStringPattern()
-    {
-        return new StringPattern();
-    }
-
-    public IMatch Match(string text)
-    {
-        if (string.IsNullOrEmpty(text))
+        private static IPattern GetValuePattern()
         {
-            return new Match(false, text);
+            var stringPattern = GetStringPattern();
+            var number = GetNumberPattern();
+            var obj = new ObjectPattern();
+            var arr = new ArrayPattern();
+
+            var value = new Choice(
+                new TextPattern("true"),
+                new TextPattern("false"),
+                new TextPattern("null"),
+                number,
+                stringPattern,
+                obj,
+                arr
+            );
+            var ws = new Whitespace();
+            return new Sequence(ws,value, ws);
         }
 
-        var pattern = GetValuePattern();
-        return pattern.Match(text);
+        private static IPattern GetNumberPattern()
+        {
+            return new Number();
+        }
+
+        private static IPattern GetStringPattern()
+        {
+            return new StringPattern();
+        }
+
+        public IMatch Match(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return new Match(false, text);
+            }
+
+            var pattern = GetValuePattern();
+            return pattern.Match(text);
+        }
     }
 }

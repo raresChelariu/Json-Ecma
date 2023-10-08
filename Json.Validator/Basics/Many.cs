@@ -1,22 +1,23 @@
-﻿namespace Json.Basics;
-
-public class Many : IPattern
+﻿namespace Json.Basics
 {
-    private readonly IPattern _pattern;
-
-    public Many(IPattern pattern)
+    public class Many : IPattern
     {
-        _pattern = pattern;
-    }
+        private readonly IPattern _pattern;
 
-    public IMatch Match(string text)
-    {
-        var match = _pattern.Match(text);
-        while (match.Success())
+        public Many(IPattern pattern)
         {
-            match = _pattern.Match(match.RemainingText());
+            _pattern = pattern;
         }
 
-        return new Match(true, match.RemainingText());
+        public IMatch Match(string text)
+        {
+            var match = _pattern.Match(text);
+            while (match.Success())
+            {
+                match = _pattern.Match(match.RemainingText());
+            }
+
+            return new Match(true, match.RemainingText());
+        }
     }
 }

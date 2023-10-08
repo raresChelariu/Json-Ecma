@@ -1,19 +1,20 @@
 ﻿using Json.Basics;
 
-namespace Json;
-
-public class Members : IPattern
+namespace Json
 {
-    private readonly IPattern _pattern;
-
-    public Members()
+    public class Members : IPattern
     {
-        var member = new Member();
-        _pattern = new List(member, new Character(','));
-    }
+        private readonly IPattern _pattern;
 
-    public IMatch Match(string text)
-    {
-        return _pattern.Match(text);
+        public Members()
+        {
+            var member = new Member();
+            _pattern = new List(member, new Character(','));
+        }
+
+        public IMatch Match(string text)
+        {
+            return _pattern.Match(text);
+        }
     }
 }

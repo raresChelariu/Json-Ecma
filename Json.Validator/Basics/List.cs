@@ -1,22 +1,23 @@
-﻿namespace Json.Basics;
-
-public class List : IPattern
+﻿namespace Json.Basics
 {
-    private readonly IPattern _pattern;
-
-    public List(IPattern element, IPattern separator)
+    public class List : IPattern
     {
-        _pattern = new OptionalPattern(
-            new Sequence(
-                element,
-                new Many(
-                    new Sequence(
-                        separator,
-                        element))));
-    }
+        private readonly IPattern _pattern;
 
-    public IMatch Match(string text)
-    {
-        return _pattern.Match(text);
+        public List(IPattern element, IPattern separator)
+        {
+            _pattern = new OptionalPattern(
+                new Sequence(
+                    element,
+                    new Many(
+                        new Sequence(
+                            separator,
+                            element))));
+        }
+
+        public IMatch Match(string text)
+        {
+            return _pattern.Match(text);
+        }
     }
 }

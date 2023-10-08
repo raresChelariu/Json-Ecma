@@ -1,44 +1,45 @@
 ﻿using System;
 
-namespace Json.Basics;
-
-public class Choice : IPattern
+namespace Json.Basics
 {
-    private IPattern[] _patterns;
-
-    public Choice(params IPattern[] initialPatterns)
+    public class Choice : IPattern
     {
-        _patterns = initialPatterns;
-    }
+        private IPattern[] _patterns;
 
-    public void Add(params IPattern[] newPatterns)
-    {
-        if (newPatterns.Length == 0)
+        public Choice(params IPattern[] initialPatterns)
         {
-            return;
+            _patterns = initialPatterns;
         }
 
-        var totalPatterns = _patterns.Length + newPatterns.Length;
-        Array.Resize(ref _patterns, totalPatterns);
-
-        for (var i = 0; i < newPatterns.Length; i++)
+        public void Add(params IPattern[] newPatterns)
         {
-            _patterns[_patterns.Length - newPatterns.Length + i] = newPatterns[i];
-        }
-    }
-
-    public IMatch Match(string text)
-    {
-        foreach (var pattern in _patterns)
-        {
-            var match = pattern.Match(text);
-
-            if (match.Success())
+            if (newPatterns.Length == 0)
             {
-                return match;
+                return;
+            }
+
+            var totalPatterns = _patterns.Length + newPatterns.Length;
+            Array.Resize(ref _patterns, totalPatterns);
+
+            for (var i = 0; i < newPatterns.Length; i++)
+            {
+                _patterns[_patterns.Length - newPatterns.Length + i] = newPatterns[i];
             }
         }
 
-        return new Match(false, text);
+        public IMatch Match(string text)
+        {
+            foreach (var pattern in _patterns)
+            {
+                var match = pattern.Match(text);
+
+                if (match.Success())
+                {
+                    return match;
+                }
+            }
+
+            return new Match(false, text);
+        }
     }
 }

@@ -1,21 +1,22 @@
-﻿namespace Json.Basics;
-
-public class Character : IPattern
+﻿namespace Json.Basics
 {
-    private readonly char _pattern;
-
-    public Character(char pattern)
+    public class Character : IPattern
     {
-        _pattern = pattern;
-    }
+        private readonly char _pattern;
 
-    public IMatch Match(string text)
-    {
-        if (string.IsNullOrEmpty(text) || text[0] != _pattern)
+        public Character(char pattern)
         {
-            return new Match(false, text);
+            _pattern = pattern;
         }
 
-        return new Match(true, text[1..]);
+        public IMatch Match(string text)
+        {
+            if (string.IsNullOrEmpty(text) || text[0] != _pattern)
+            {
+                return new Match(false, text);
+            }
+
+            return new Match(true, text[1..]);
+        }
     }
 }

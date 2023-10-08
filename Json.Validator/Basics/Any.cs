@@ -1,21 +1,22 @@
-﻿namespace Json.Basics;
-
-public class Any : IPattern
+﻿namespace Json.Basics
 {
-    private readonly string _accepted;
-
-    public Any(string accepted)
+    public class Any : IPattern
     {
-        _accepted = accepted;
-    }
+        private readonly string _accepted;
 
-    public IMatch Match(string text)
-    {
-        if (string.IsNullOrEmpty(text) || !_accepted.Contains(text[0]))
+        public Any(string accepted)
         {
-            return new Match(false, text);
+            _accepted = accepted;
         }
 
-        return new Match(true, text[1..]);
+        public IMatch Match(string text)
+        {
+            if (string.IsNullOrEmpty(text) || !_accepted.Contains(text[0]))
+            {
+                return new Match(false, text);
+            }
+
+            return new Match(true, text[1..]);
+        }
     }
 }
