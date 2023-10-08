@@ -4,7 +4,7 @@ namespace Json;
 
 public class Value : IPattern
 {
-    private static Choice GetValuePattern()
+    private static IPattern GetValuePattern()
     {
         var stringPattern = GetStringPattern();
         var number = GetNumberPattern();
@@ -20,8 +20,8 @@ public class Value : IPattern
             obj,
             arr
         );
-
-        return value;
+        var ws = new Whitespace();
+        return new Sequence(ws,value, ws);
     }
 
     private static IPattern GetNumberPattern()

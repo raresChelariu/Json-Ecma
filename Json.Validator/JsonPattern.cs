@@ -2,19 +2,10 @@
 
 namespace Json;
 
-public class JsonFull : IPattern
+public class JsonPattern : IPattern
 {
-    private readonly IPattern _pattern;
+    private readonly IPattern _pattern = new Value();
 
-    public JsonFull()
-    {
-        var obj = new Object();
-
-        var array = new Arr();
-
-        _pattern = new Choice(obj, array);
-    }
-    
     public IMatch Match(string text)
     {
         if (string.IsNullOrEmpty(text))
